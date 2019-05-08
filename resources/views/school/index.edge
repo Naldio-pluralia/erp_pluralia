@@ -1,0 +1,51 @@
+@layout('layouts.dashboard')
+@section('main')
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Escolas
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Escolas</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="btn-group pull-right" style="margin: 10px 0px">
+            <a href="/schools/register" class="btn btn-success btn-flat"><i class="fa fa-plus"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        @each(school in schools)
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+              <h3>{{school.name}}</h3>
+  
+              <p>{{school.number}} - {{school.address}}</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="/schools/{{school.id}}" class="small-box-footer">
+                Abrir <i class="fa fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+        @endeach
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+@endsection

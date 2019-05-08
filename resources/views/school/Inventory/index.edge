@@ -1,0 +1,99 @@
+@layout('layouts.schoolDataTable.edge')
+
+@section('main')
+  <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+     <!-- Content Header (Page header) -->
+     <section class="content-header">
+       <h1>
+         Escola
+         <small>Logistica</small>
+       </h1>
+       <ol class="breadcrumb">
+         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li><a href="#">Logistica</a></li>
+         <li class="active">Produtos</li>
+       </ol>
+     </section>
+
+     <!-- Main content -->
+     <section class="content">
+       <div class="row">
+         <div class="col-lg-12">
+           <div class="btn-group pull-right" style="margin: 10px 0px">
+           <a href="/schools/{{id}}/logistic/products/register" class="btn btn-success btn-flat"><i class="fa fa-plus"></i></a>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-xs-12">
+           <div class="box">
+             <div class="box-header">
+               <h3 class="box-title">Lista de Produtos</h3>
+             </div>
+             <!-- /.box-header -->
+             <div class="box-body">
+               <table id="example1" class="table table-bordered
+                 table-striped">
+                 <thead>
+                   <tr>
+                     <th>#</th>
+                     <th>Nome</th>
+                     <th>Armazém</th>
+                     <th>Categoria</th>
+                     <th>Preço</th>
+                     <th>Quantidade</th>
+                     <th>Unidade de Medida</th>
+                     <th>Unidades</th>
+                     <th>Stock Minimo</th>
+                     <th>Total</th>
+                     <th>Ultima Actualização</th>
+                     <th>Nível de Stock</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   @each(p in products)
+                     <tr>
+                       <td>{{p.id}}</td>
+                       <td>{{p.name}}</td>
+                       <td>{{p.warehouse}}</td>
+                       <td>{{p.category}}</td>
+                       <td>{{p.price}}</td>
+                       <td>{{p.quantity}}</td>
+                       <td>{{p.unitsMed}}</td>
+                       <td>{{p.units}}</td>
+                       <td>{{p.stockMin}}</td>
+                       <td>{{p.stockMin}}</td>
+                       <td>Há {{p._v}}</td>
+                       <td>
+                           <div class="progress progress-xs">
+                             @if(p.quantity < p.stockMin)
+                             <div class="progress-bar progress-bar-danger" style="width: 25%"></div>
+                             @endif 
+                             @if(p.quantity === p.stockMin)
+                             <div class="progress-bar progress-bar-primary" style="width: 50%"></div>
+                             @endif                                  
+                             @if(p.quantity > p.stockMin)
+                               <div class="progress-bar progress-bar-success" style="width: 75%"></div>
+                             @endif                 
+                           </div>
+                         </td>
+                     </tr>
+                   @endeach
+                 </tbody>
+               </table>
+             </div>
+             <!-- /.box-body -->
+           </div>
+           <!-- /.box -->
+         </div>
+         <!-- /.col -->
+       </div>
+       <!-- /.row -->
+     </section>
+     <!-- /.content -->
+   </div>
+   <!-- /.content-wrapper -->
+  
+
+@endsection
