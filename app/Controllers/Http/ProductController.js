@@ -10,8 +10,27 @@
 const Product = use("App/Models/Product");
 const Stock = use("App/Models/Stock");
 
+const { validate } = use("Validator");
+
 class ProductController {
-  async store({ view, request, response }) {
+  async store({ view, request, response, session }) {
+    const rules = {
+      name: "required",
+      quantity: "required",
+      stockMin: "required"
+    };
+
+    const validation = await validate(
+      request.only(["name", "quantity", "stockMin"]),
+      rules
+    );
+
+    if (validation.fails()) {
+      session.withErrors(validation.messages());
+
+      return response.redirect("back");
+    }
+
     const {
       category,
       name,
@@ -48,6 +67,41 @@ class ProductController {
     });
 
     return response.redirect(`/schools/${request.params.id}/logistic/products`);
+  }
+
+  async showProduct({ view, request, response, session, params }) {
+    const product = await Product.query()
+      .where("id", params.productId)
+      .where("school_id", params.schoolId)
+      .first();
+
+    const stock = await Stock.query()
+      .where("product_id", params.productId)
+      .where("school_id", params.schoolId)
+      .first();
+
+    const { initialStock, inputStock, outputStock, finalStock } = stock;
+
+    if (session.get("id") === request.params.id) {
+      return view.render("school.inventory.product.details", {
+        id: session.get("id"),
+        product: product.toJSON(),
+        initialStock,
+        inputStock: 0,
+        outputStock: 0,
+        finalStock
+      });
+    } else {
+      session.put("id", request.params.id);
+      return view.render("school.inventory.product.details", {
+        id: request.params.id,
+        product: product.toJSON(),
+        initialStock,
+        inputStock,
+        outputStock,
+        finalStock
+      });
+    }
   }
 }
 

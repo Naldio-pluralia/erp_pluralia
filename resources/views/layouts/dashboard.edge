@@ -19,6 +19,7 @@
   {{style('dist/css/AdminLTE')}}
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
+  {{ style('dist/css/dropfy')}}
   {{style('dist/css/skins/_all-skins')}}
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,5 +75,17 @@
 
 <!-- AdminLTE for demo purposes -->
 {{ script('dist/js/demo') }}
+{{ script('dist/js/dropfy')}}
+<script>
+ $(function () {
+  $('.dropify').dropify({
+      messages: {
+        'default': 'Arraste e solte um arquivo aqui ou clique',
+        'replace': 'Arraste e solte ou clique para substituir',
+        'remove':  'Remover',
+        'error':   'Ooops, algo errado aconteceu'
+    }} );
+ })
+</script>
 </body>
 </html>

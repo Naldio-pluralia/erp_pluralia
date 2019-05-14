@@ -22,6 +22,7 @@
          <div class="col-lg-12">
            <div class="btn-group pull-right" style="margin: 10px 0px">
            <a href="/schools/{{id}}/logistic/products/register" class="btn btn-success btn-flat"><i class="fa fa-plus"></i></a>
+           <a href="/schools/{{id}}/logistic/products/download" style="margin-left: 10px" class="btn btn-primary btn-flat"><i class="fa fa-download"></i></a>
            </div>
          </div>
        </div>
@@ -33,22 +34,17 @@
              </div>
              <!-- /.box-header -->
              <div class="box-body">
-               <table id="example1" class="table table-bordered
-                 table-striped">
+               <table id="example1" class="table table-bordered">
                  <thead>
                    <tr>
                      <th>#</th>
                      <th>Nome</th>
-                     <th>Armazém</th>
-                     <th>Categoria</th>
-                     <th>Preço</th>
-                     <th>Quantidade</th>
-                     <th>Unidade de Medida</th>
-                     <th>Unidades</th>
-                     <th>Stock Minimo</th>
-                     <th>Total</th>
-                     <th>Ultima Actualização</th>
+                     <th>Stock Inicial</th>
+                     <th>Entradas</th>
+                     <th>Saídas</th>
+                     <th>Stock Final</th>
                      <th>Nível de Stock</th>
+                     <th>Ver Detalhes</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -56,15 +52,10 @@
                      <tr>
                        <td>{{p.id}}</td>
                        <td>{{p.name}}</td>
-                       <td>{{p.warehouse}}</td>
-                       <td>{{p.category}}</td>
-                       <td>{{p.price}}</td>
-                       <td>{{p.quantity}}</td>
-                       <td>{{p.unitsMed}}</td>
-                       <td>{{p.units}}</td>
-                       <td>{{p.stockMin}}</td>
-                       <td>{{p.stockMin}}</td>
-                       <td>Há {{p._v}}</td>
+                       <td>{{p.initialStock}}</td>
+                       <td>{{p.inputStock}}</td>
+                       <td>{{p.outputStock}}</td>
+                       <td>{{p.finalStock}}</td>
                        <td>
                            <div class="progress progress-xs">
                              @if(p.quantity < p.stockMin)
@@ -78,6 +69,7 @@
                              @endif                 
                            </div>
                          </td>
+                         <td><a href="/schools/{{id}}/logistic/products/{{p.id}}/details"><i class="fa  fa-eye"></i></a></td>
                      </tr>
                    @endeach
                  </tbody>
@@ -94,6 +86,4 @@
      <!-- /.content -->
    </div>
    <!-- /.content-wrapper -->
-  
-
 @endsection

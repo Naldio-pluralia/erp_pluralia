@@ -1,15 +1,6 @@
 @layout('layouts.schoolDataTable')
 
 @section('main')
-<style>
-    button.inline {
-      float: left;
-      margin-right: 10px;
-    }
-    input {
-      width: 100%
-    }
-</style>
   <div class="content-wrapper">
       <section class="content-header">
           <h1>
@@ -119,11 +110,7 @@
                   </table>
                     
                     <button type="submit" class="btn btn-success inline">Enviar Pedidos</button>
-                  </form>
-                  <form action="/school/{{id}}/stock/product/clearRequest" class="form-inline">
-                    <button type="submit" class="btn btn-danger inline">Limpar Pedidos</a>
-                  </form>
-                  
+                  </form>                  
               </div>
             </div>
             <!-- /.box-body -->

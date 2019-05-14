@@ -11,7 +11,7 @@ class School extends Model {
     return this.hasMany("App/Model/Stock");
   }
   avatar() {
-    return this.hasOne("App/Model/Avatar");
+    return this.hasOne("App/Models/Avatar");
   }
 }
 

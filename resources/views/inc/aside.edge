@@ -3,26 +3,9 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="{{assetsUrl('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+    <div class="user-panel" style="background: #FFF; border-right: 1px solid rgba(0,0,0,.4)">
+        <img src="{{assetsUrl('img/logo.png')}}" alt="" style="width: 100%">
       </div>
-      <div class="pull-left info">
-        <p>Naldio Joaquim</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
-    </div>
-    <!-- search form -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
-        <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-      </div>
-    </form>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
@@ -41,7 +24,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i>
-          <span>Administração de Pessoal</span>
+          <span>Recursos Humanos</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -56,13 +39,25 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-laptop"></i>
-          <span>Empreendimentos Pedago..</span>
+          <span>Serviços Educativos</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
           <li><a href="/schools"><i class="fa fa-circle-o"></i> Escolas</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-user"></i>
+          <span>Usuários</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="/register"><i class="fa fa-user-plus"></i> Registar</a></li>
         </ul>
       </li>
     </ul>

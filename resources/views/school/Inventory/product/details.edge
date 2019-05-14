@@ -1,0 +1,64 @@
+@layout('layouts.schoolDataTable')
+
+@section('main')
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Detalhes
+      <small>Produto</small>
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-8 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="box box-success">
+            <div class="box-header with-border">
+            <h3 class="box-title" style="text-transform: capitalize">{{product.warehouse}}</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="col-md-12">
+                  <!-- Widget: user widget style 1 -->
+                  <div class="box box-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-light">
+                      <div class="widget-user-image">
+                        <img class="img-circle" src="{{assetsUrl('dist/img/user7-128x128.jpg')}}" alt="User Avatar">
+                      </div>
+                      <!-- /.widget-user-image -->
+                    <h3 class="widget-user-username">{{product.name}}</h3>
+                    <h5 class="widget-user-desc" style="text-transform: uppercase">{{product.category}}</h5>
+                    </div>
+                    <div class="box-footer no-padding">
+                      <ul class="nav nav-stacked">
+                        <li><a href="#">Preço <span class="pull-right badge bg-blue">{{product.price}} KZ</span></a></li>
+                        <li><a href="#">Stock Inicial <span class="pull-right badge bg-green">{{initialStock}}</span></a></li>
+                        <li><a href="#">Unidade de Medida <span class="pull-right badge bg-aqua">{{product.unitsMed}}</span></a></li>
+                        <li><a href="#">Total de Unidades <span class="pull-right badge bg-green">{{product.units}}</span></a></li>
+                        <li><a href="#">Entradas do Stock <span class="pull-right badge bg-green">{{inputStock}}</span></a></li>
+                        <li><a href="#">Saídas do Stock <span class="pull-right badge bg-green">{{outputStock}}</span></a></li>
+                        <li><a href="#">Stock Final <span class="pull-right badge bg-green">{{finalStock}}</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- /.widget-user -->
+                </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+@endsection

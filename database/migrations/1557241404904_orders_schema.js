@@ -16,6 +16,7 @@ class OrdersSchema extends Schema {
       table.integer("stockMin");
       table.string("unitsMed");
       table.integer("stockLevel");
+      table.integer("productID");
 
       table
         .integer("school_id")

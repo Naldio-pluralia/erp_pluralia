@@ -4,6 +4,37 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Data Tables</title>
+    <style>
+      .notifyjs-bootstrap-base {
+        margin-top: 150px;
+        margin-right: 40px;
+      }
+      .empty  {
+      text-align: center;
+    }
+    .empty b {
+      /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      font-size: 25px;
+   
+      /* flex-direction: column; */
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 100;
+      color: red;
+    }
+    td::first-letter {
+      text-transform: uppercase;
+    }
+    button.inline {
+      float: left;
+      margin-right: 10px;
+    }
+    input {
+      width: 100%;
+    }
+    </style>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1,
       user-scalable=no" name="viewport">
@@ -13,6 +44,7 @@
    {{ style('bower_components/font-awesome/css/font-awesome')}}
     <!-- Ionicons -->
    {{ style('bower_components/Ionicons/css/ionicons')}}
+   {{ style('bower_components/select2/dist/css/select2')}}
     <!-- DataTables -->
    {{ style('bower_components/datatables.net-bs/css/dataTables.bootstrap')}}
     <!-- Theme style -->
@@ -45,8 +77,11 @@
 
     <!-- jQuery 3 -->
     {{ script('bower_components/jquery/dist/jquery')}}
+    <!-- Notifyjs -->
+    {{ script('https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js')}}
     <!-- Bootstrap 3.3.7 -->
     {{ script('bower_components/bootstrap/dist/js/bootstrap')}}
+    {{ script('bower_components/select2/dist/js/select2.full')}}
     <!-- DataTables -->
     {{ script('bower_components/datatables.net/js/jquery.dataTables')}}
     {{ script('bower_components/datatables.net-bs/js/dataTables.bootstrap')}}
@@ -61,13 +96,15 @@
     <!-- page script -->
   <script>
   $(function () {
+    $('.select2').select2()
     $('#example1').DataTable({
       'paging'      : true,
       'lengthChange': true,
       'searching'   : true,
       'ordering'    : true,
       'info'        : false,
-      'autoWidth'   : false
+      'autoWidth'   : true,
+      'select'      : true,
     })
     $('#example2').DataTable({
       'paging'      : true,
@@ -79,5 +116,10 @@
     })
   })
 </script>
+@if(old('notification')) 
+<script>
+  $.notify("{{old('notification')}}", "{{old('alert')}}");
+</script>
+@endif
   </body>
 </html>

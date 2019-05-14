@@ -1,6 +1,7 @@
 "use strict";
 const Product = use("App/Models/Product");
 const CardInput = use("App/Models/CardInput");
+const CardOutput = use("App/Models/CardOutput");
 const ProductRequest = use("App/Models/ProductRequest");
 const Order = use("App/Models/Order");
 const Stock = use("App/Models/Stock");
@@ -20,10 +21,19 @@ class LogisticController {
         locale: pt
       });
 
-      allProds.push({ ...newProducts[i], _v: dateFns });
-    }
+      let stock = await Stock.query()
+        .where("product_id", newProducts[i].id)
+        .first();
 
-    console.log(allProds);
+      allProds.push({
+        ...newProducts[i],
+        _v: dateFns,
+        initialStock: stock.initialStock,
+        inputStock: stock.inputStock,
+        outputStock: stock.outputStock,
+        finalStock: stock.finalStock
+      });
+    }
 
     if (session.get("id") === request.params.id) {
       return view.render("school.inventory.index", {
@@ -59,27 +69,30 @@ class LogisticController {
       });
     }
   }
-  async remove({ request, view, session }) {
-    const products = await Product.all();
-    const requests = await ProductRequest.all();
-    for (let r in requests) {
-    }
+  async remove({ request, view, session, params }) {
+    const products = await Product.query()
+      .where("school_id", params.id)
+      .fetch();
+    const productsCardOutputs = await CardOutput.all();
     if (session.get("id") === request.params.id) {
       return view.render("school.inventory.stock.removeProduct", {
         id: session.get("id"),
         products: products.toJSON(),
-        requests: requests.toJSON()
+        productsCardOutputs: productsCardOutputs.toJSON()
       });
     } else {
       session.put("id", request.params.id);
       return view.render("school.inventory.stock.removeProduct", {
         id: request.params.id,
-        products: products.toJSON()
+        products: products.toJSON(),
+        productsCardOutputs: productsCardOutputs.toJSON()
       });
     }
   }
-  async requestProduct({ view, request, session }) {
-    const products = await Product.all();
+  async requestProduct({ view, request, session, params }) {
+    const products = await Product.query()
+      .where("school_id", params.id)
+      .fetch();
     const requests = await ProductRequest.all();
     for (let r in requests) {
     }
@@ -126,6 +139,17 @@ class LogisticController {
         id: request.params.id
       });
     }
+  }
+
+  async clearShopping({ params, response, session }) {
+    await Order.query().delete();
+
+    session.flash({
+      notification: "Produtos removidos com sucesso!",
+      alert: "success"
+    });
+
+    return response.redirect("back");
   }
 }
 

@@ -18,6 +18,14 @@ class AvatarSchema extends Schema {
         .inTable("schools")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+
+      table
+        .integer("user_id")
+        .unsigned()
+        .references("id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table.timestamps();
     });
   }
