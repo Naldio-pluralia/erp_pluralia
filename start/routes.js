@@ -83,6 +83,10 @@ Route.group(() => {
     "StockController.remInStock"
   );
   Route.post("/schools/:id/stock/product/remStock", "StockController.remStock");
+  Route.post(
+    "/schools/:id/stock/product/searchProduct",
+    "StockController.searchProduct"
+  );
 
   // Requisição
   Route.get(
